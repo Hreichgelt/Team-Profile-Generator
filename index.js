@@ -1,7 +1,7 @@
 // include packages required for application 
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkdown = require('./utils/generateMarkdown.js')
+const generateHTML = require('./utils/generateHTML.js')
 
 // array of questions for team member input 
 const questions = [
@@ -34,7 +34,7 @@ const questions = [
 
 // create function to write HTML File
 function writeToFile(filename, data) {
-    let content = generateMarkdown(data);
+    let content = generateHTML(data);
     fs.writeFile('./output/index.html', content, function (error){
         if (error) {
             return console.log(error)

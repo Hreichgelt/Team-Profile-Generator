@@ -1,14 +1,20 @@
 const Engineer = require('../lib/engineer');
+const Engineer = require('../lib/engineer');
 
 
 test('set github', () => {
-    const git = 'githubUn';
-    const employeee = new Engineer('Hugo', 33, 'hugoboss@gmail.com',);
-    expect(employeee.github).tobe(git);
+    const git = 'github';
+    const employee = new Engineer('Hugo', 33, 'hugoboss@gmail.com',);
+    expect(employee.github).tobe(git);
 });
 
 test('get github', () => {
     const testGitHub = 'hreichgelt06';
-    const Engineer = new Engineer('Hugo', 33, 'hugoboss@gmail.com', testGitHub);
-    expect(employeee.getGitHub).tobe(testGitHub)
+    const engineer = new Engineer('Hugo', 33, 'hugoboss@gmail.com', testGitHub);
+    expect(engineer.getGitHub).tobe(testGitHub)
+});
+
+test('get employee title', () => {
+    const engineer = new Engineer('Hugo', 33, 'hugoboss@gmail.com');
+    expect(engineer.getTitle()).tobe('Engineer');
 });

@@ -1,7 +1,11 @@
 // include packages required for application 
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateHTML = require('./utils/generateHTML.js')
+const generateHTML = require('./utils/generateHTML.js');
+const Employee = require('./lib/employee');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
+const Manager = require('./lib/manager');
 
 // array of questions for team member input 
 const questions = [
@@ -32,7 +36,7 @@ const questions = [
     },
 ];
 
-// create a for loop to run through questions for each staff member
+// create a for loop to run through questions for each staff member?
 
 
 // create function to write HTML File

@@ -32,6 +32,9 @@ const questions = [
     },
 ];
 
+// create a for loop to run through questions for each staff member
+
+
 // create function to write HTML File
 function writeToFile(filename, data) {
     let content = generateHTML(data);

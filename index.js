@@ -16,11 +16,6 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'title',
-        message: 'What is your title?'
-    },
-    {
-        type: 'input',
         name: 'id',
         message: 'What is your ID Number?'
     },
@@ -28,6 +23,11 @@ const questions = [
         type: 'input',
         name: 'email',
         message: 'What is your email address?'
+    },
+    {
+        type: 'input',
+        name: 'title',
+        message: 'What is your title?'
     },
     {
         type: 'input',

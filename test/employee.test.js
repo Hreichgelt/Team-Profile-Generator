@@ -2,14 +2,20 @@ const Employee = require('../lib/employee');
 
 // create employee object
 test('create new employee', () => {
-    let employeee = new Employee();
-    expect(typeof(employeee)).tobe('object');
+    const employeee = new Employee();
+    expect(typeof (employeee)).tobe('object');
+});
+
+test('Set title', () => {
+    const testTitle = 'Employee';
+    const employeee = new Employee('Hugo', 33, testTitle);
+    expect(employeee.title).tobe(testTitle);
 });
 
 test('Set name', () => {
-    const name = 'Hugo';
-    const employeee = new Employee(name);
-    expect(employeee.name).tobe(name);
+    const testName = 'Hugo';
+    const employeee = new Employee(testName);
+    expect(employeee.name).tobe(testName);
 });
 
 test('Set id', () => {
@@ -22,6 +28,24 @@ test('Set email', () => {
     const testEmail = 'hugoboss@gmail.com';
     const employeee = new Employee('Hugo', 33, testEmail);
     expect(employeee.email).tobe(testEmail);
+});
+
+test('Set office', () => {
+    const testOffice = 360;
+    const employeee = new Employee('Hugo', 33, 'hugoboss@gmail.com', testOffice);
+    expect(employeee.office).tobe(testOffice);
+});
+
+Test('set github', () => {
+    const testGit = 'githubUn';
+    const employeee = new Engineer('Hugo', 33, 'hugoboss@gmail.com', 360, testGit);
+    expect(employeee.github).tobe(testGit);
+});
+
+test('get title', () => {
+    const testTitle = 'Employee';
+    const employeee = new Employee('Hugo', 33, testTitle);
+    expect(employeee.getTitle()).tobe(testTitle);
 });
 
 test('get name', () => {
@@ -42,8 +66,16 @@ test('get email', () => {
     expect(employeee.getId()).tobe(testEmail);
 });
 
-test('get title', () => {
-    const testTitle = 'Employee';
-    const employeee = new Employee('Hugo', 33, testTitle);
-    expect(employeee.getTitle()).tobe(testTitle);
+test('get office', () => {
+    const testOffice = 360;
+    const employeee = new Employee('Hugo', 33, 'hugoboss@gmail.com', testOffice);
+    expect(employeee.getOffice).tobe(testOffice);
 });
+
+test('get github', () => {
+    const testGit = 'hreichgelt06';
+    const employeee = new Employee('Hugo', 33, 'hugoboss@gmail.com', 360, testGit);
+    expect(employeee.getGitHub).tobe(testGit);
+})
+
+

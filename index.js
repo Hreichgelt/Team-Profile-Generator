@@ -34,6 +34,11 @@ const questions = [
         name: 'github',
         message: 'What is your Github username?'
     },
+    {
+        type: 'input',
+        name: 'office',
+        message: 'What is your office number?'
+    },
 ];
 
 // create a for loop to run through questions for each staff member?

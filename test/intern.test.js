@@ -1,11 +1,18 @@
 const Intern = require('../lib/intern');
 
-test('set intern', () => {
-    const testSchool = 'Winona State';
-    const intern = new Intern('Copper', 12, 'coppout@gmail.com', testSchool);
-    expect(intern.school).tobe(testSchool);
+test('set school', () => {
+    const school = 'school';
+    const employee = new Intern('Hugo', 33, 'hugoboss@gmail.com');
+    expect(employee.school).tobe(school);
 });
 
-test('get intern', () => {
-    const intern
+test('get school', () => {
+    const testSchool = 'Winona State';
+    const intern = new Intern('Hugo', 33, 'hugoboss@gmail.com', testSchool);
+    expect(intern.getSchool).tobe(testSchool);
+});
+
+test('get employee title', () => {
+    const intern = new Intern('Hugo', 33, 'hugoboss@gmail.com');
+    expect(intern.getTitle()).tobe('Intern')
 })

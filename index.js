@@ -37,20 +37,26 @@ const questions = [
         name: 'email',
         message: 'What is the employees email address?'
     },
+];
 
-    // question for manager
+// question for manager
+managerQuest = [
     {
         type: 'input',
         name: 'office',
         message: 'What is your office number?'
-    },
-    // question for engineer
+    }
+]
+// question for engineer
+engineerQuest = [
     {
         type: 'input',
         name: 'github',
         message: 'What is your Github username?'
     },
-    // question for intern
+]
+// question for intern
+internQuest = [
     {
         type: 'input',
         name: 'school',
@@ -58,6 +64,8 @@ const questions = [
     },
 
 ];
+
+
 
 // still need - function for creating new employee- starting with manager, need array 
 // after manager created - menu to add engineer and intern - need to return to menu after creation
@@ -108,8 +116,31 @@ const newEmployee = async () => {
         let github = response.github;
         let school = response.school;
 
+        if (title === 'Manager') {
+            inquirer.prompt(managerQuest).then((response) => {
+                office = response.office;
+                let employee = new Manager(name, id, email, office);
+                employeesArr.push(employee);
+                addEmployee(employeesArr);
+            });
+        } else if (title === 'Engineer') {
+            inquirer.prompt(engineerQuest).then((response) => {
+                github = response.github;
+                let employee = new Engineer(name, id, email, github);
+                employeesArr.push(employee);
+                addEmployee(employeesArr);
+            });
+        } else (title === 'Intern') {
+            inquirer.prompt(internQuest).then((response) => {
+                school = response.school;
+                let employee = new Intern(name, id, email, school);
+                employeesArr.push(employee);
+                addEmployee(employeesArr);
+            });
+        }
+    });
+};
 
-    })
-}
+
 
 init();

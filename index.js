@@ -9,6 +9,8 @@ const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const Manager = require('./lib/manager');
 
+let employeesArr = []
+
 // array of questions for team member input - need to break up for individual
 const questions = [
     {
@@ -55,7 +57,9 @@ const questions = [
 
 ];
 
-// create a for loop to run through questions for each staff member?
+// still need - function for creating new employee- starting with manager, need array 
+// after manager created - menu to add engineer and intern - need to return to menu after creation
+// way to add additional employees after Manager, engineer and intern have been created
 
 
 // create function to write HTML File

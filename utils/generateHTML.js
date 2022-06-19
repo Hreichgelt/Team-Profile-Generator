@@ -1,7 +1,6 @@
-
-// create a function that generates the html 
+// create a function that generates the html
 function generateHTML(data) {
-return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,6 +24,5 @@ return `<!DOCTYPE html>
 </html>
 `;
 }
-
 
 module.exports = generateHTML;

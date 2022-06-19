@@ -1,6 +1,9 @@
 // include packages required for application 
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path = require('path');
+const directory = path.resolve(__dirname, 'output');
+const filePath = path.join(directory, 'index.html');
 
 // Exports
 const generateHTML = require('./utils/generateHTML.js');
@@ -11,7 +14,7 @@ const Manager = require('./lib/manager');
 
 let employeesArr = []
 
-// array of questions for team member input - need to break up for individual
+// array of questions for team member input 
 const questions = [
     {
         type: 'list',
@@ -48,12 +51,11 @@ const questions = [
         message: 'What is your Github username?'
     },
     // question for intern
-        // question for manager
-        {
-            type: 'input',
-            name: 'school',
-            message: 'What school did/do you attend?'
-        },
+    {
+        type: 'input',
+        name: 'school',
+        message: 'What school did/do you attend?'
+    },
 
 ];
 
@@ -63,9 +65,9 @@ const questions = [
 
 
 // create function to write HTML File
-function writeToFile(filename, data) {
+function writeToFile(fileName, data) {
     let content = generateHTML(data);
-    fs.writeFile('./output/index.html', content, function (error) {
+    fs.writeFile(fileName, content, function (error) {
         if (error) {
             return console.log(error)
         }
@@ -73,11 +75,41 @@ function writeToFile(filename, data) {
     });
 };
 
-// create a function to initialize app
-function init() {
-    inquirer.prompt(questions).then(function (data) {
-        let fileName = "index.html"
-        writeToFile(fileName, data)
-    });
+// create a function to initialize app - need to rewrite 
+const init = () => {
+    if (fs.existsSync(filePath)) {
+        inquirer.prompt({
+            type: 'confirm',
+            message: 'file already exists would you like to replace?',
+            name: 'replace'
+        }).then(async (response) => {
+            let replace = response.replace;
+            if (await replace === true) {
+                console.log('enter your team info:')
+                newEmployee()
+            } else if (await replace === false) {
+                console.log('file will not be replaced')
+            } else {
+                console.log('enter your team info')
+                newEmployee()
+            }
+        })
+    }
+};
+
+
+// create employee function 
+const newEmployee = async () => {
+    await inquirer.prompt(questions).then((response) => {
+        let title = response.title;
+        let name = response.name;
+        let id = response.id;
+        let office = response.office;
+        let github = response.github;
+        let school = response.school;
+
+
+    })
 }
+
 init();

@@ -105,7 +105,6 @@ const init = () => {
     }
 };
 
-
 // create employee function 
 const newEmployee = async () => {
     await inquirer.prompt(questions).then((response) => {
@@ -140,6 +139,22 @@ const newEmployee = async () => {
         }
     });
 };
+
+// create additional employees function 
+const addEmployee = async (array) => {
+    await inquirer.prompt({
+        type: 'confirm',
+        name: 'addEmployee',
+        message: 'add another employee? (Required)'
+    }).then(async (response) => {
+        let createEmployee = response.addEmployee;
+        if (await createEmployee === true) {
+            newEmployee();
+        } else if (await createEmployee === false) {
+            
+        }
+    })
+}
 
 
 

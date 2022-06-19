@@ -1,6 +1,8 @@
 // include packages required for application 
 const inquirer = require('inquirer');
 const fs = require('fs');
+
+// Exports
 const generateHTML = require('./utils/generateHTML.js');
 const Employee = require('./lib/employee');
 const Engineer = require('./lib/engineer');

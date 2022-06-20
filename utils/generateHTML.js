@@ -20,6 +20,10 @@ function generateHTML(data) {
           </div>
         </div>
       </div>
+      <div class="container">
+        <div class="row">
+        <div class="row col-12 d-flex justify-content-center">
+      </div>
       <div class="card" style="width: 18rem">
         <div class="card-header name">Name</div>
         <div class="card-header position">Manager</div>
@@ -27,7 +31,6 @@ function generateHTML(data) {
         <ul class="list-group list-group-flush">
           <li class="list-group-item id">ID</li>
           <li class="list-group-item email">Email</li>
-          <li class="list-group-item github">Github</li>
         </ul>
       </div>
       <div class="card" style="width: 18rem">
@@ -50,6 +53,7 @@ function generateHTML(data) {
       </div>
     </body>
   </html>
+  
 `;
 }
 

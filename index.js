@@ -2,7 +2,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-
 // Exports
 const generateHTML = require("./utils/generateHTML.js");
 const Engineer = require("./lib/engineer");
@@ -59,7 +58,4 @@ internQuest = [
     message: "What school did/do you attend?",
   },
 ];
-
-// after manager created - menu to add engineer and intern - need to return to menu after creation
-// way to add additional employees after Manager, engineer and intern have been created
 

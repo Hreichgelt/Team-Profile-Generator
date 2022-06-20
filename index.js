@@ -1,20 +1,17 @@
-// include packages required for application
+const generateHTML = require("./utils/generateHTML.js");
+const Engineer = require("./lib/engineer.js");
+const Intern = require("./lib/intern.js");
+const Manager = require("./lib/manager.js");
 const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
-const output = path.resolve(__dirname, "output");
+const output = path.resolve(__dirname, "./output");
 const outputFile = path.join(output, "index.html");
-
-// Exports
-const generateHTML = require("./utils/generateHTML.js");
-const Engineer = require("./lib/engineer");
-const Intern = require("./lib/intern");
-const Manager = require("./lib/manager");
 
 employeesArr = [];
 
 function init() {
-  function teamCreate() {
+  function teamCreate () {
     inquirer.prompt([{
           type: "list",
           name: "title",
@@ -155,6 +152,6 @@ function builtHTML() {
   fs.writeFileSync(outputFile, generateHTML(employeesArr));
 }
 
-// teamCreate();
+teamCreate();
 
 init();

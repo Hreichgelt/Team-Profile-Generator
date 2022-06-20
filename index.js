@@ -1,161 +1,65 @@
-// include packages required for application 
-const inquirer = require('inquirer');
-const fs = require('fs');
-const path = require('path');
-const directory = path.resolve(__dirname, 'output');
-const filePath = path.join(directory, 'index.html');
+// include packages required for application
+const inquirer = require("inquirer");
+const fs = require("fs");
+
 
 // Exports
-const generateHTML = require('./utils/generateHTML.js');
-const Employee = require('./lib/employee');
-const Engineer = require('./lib/engineer');
-const Intern = require('./lib/intern');
-const Manager = require('./lib/manager');
+const generateHTML = require("./utils/generateHTML.js");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+const Manager = require("./lib/manager");
+let employeesArr = [];
 
-let employeesArr = []
-
-// array of questions for team member input 
+// array of questions for team member input
 const questions = [
-    {
-        type: 'list',
-        name: 'title',
-        message: 'What is the employees title?',
-        choices: ['Engineer', 'Intern', 'Manager']
-    },
-    {
-        type: 'input',
-        name: 'name',
-        message: 'What is the employees name?'
-    },
-    {
-        type: 'input',
-        name: 'id',
-        message: 'What is the employees ID Number?'
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: 'What is the employees email address?'
-    },
+  {
+    type: "list",
+    name: "title",
+    message: "What is the employees title?",
+    choices: ["Engineer", "Intern", "Manager"],
+  },
+  {
+    type: "input",
+    name: "name",
+    message: "What is the employees name?",
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is the employees ID Number?",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is the employees email address?",
+  },
 ];
 
 // question for manager
 managerQuest = [
-    {
-        type: 'input',
-        name: 'office',
-        message: 'What is your office number?'
-    }
-]
+  {
+    type: "input",
+    name: "office",
+    message: "What is your office number?",
+  },
+];
 // question for engineer
 engineerQuest = [
-    {
-        type: 'input',
-        name: 'github',
-        message: 'What is your Github username?'
-    },
-]
+  {
+    type: "input",
+    name: "github",
+    message: "What is your Github username?",
+  },
+];
 // question for intern
 internQuest = [
-    {
-        type: 'input',
-        name: 'school',
-        message: 'What school did/do you attend?'
-    },
-
+  {
+    type: "input",
+    name: "school",
+    message: "What school did/do you attend?",
+  },
 ];
 
-
-
-// still need - function for creating new employee- starting with manager, need array 
 // after manager created - menu to add engineer and intern - need to return to menu after creation
 // way to add additional employees after Manager, engineer and intern have been created
 
-
-// create function to write HTML File
-function writeToFile(fileName, data) {
-    let content = generateHTML(data);
-    fs.writeFile(fileName, content, function (error) {
-        if (error) {
-            return console.log(error)
-        }
-        console.log('HTML TEMPLATE GENERATED!');
-    });
-};
-
-// create a function to initialize app - need to rewrite 
-const init = () => {
-    if (fs.existsSync(filePath)) {
-        inquirer.prompt({
-            type: 'confirm',
-            message: 'file already exists would you like to replace?',
-            name: 'replace'
-        }).then(async (response) => {
-            let replace = response.replace;
-            if (await replace === true) {
-                console.log('enter your team info:')
-                newEmployee()
-            } else if (await replace === false) {
-                console.log('file will not be replaced')
-            } else {
-                console.log('enter your team info')
-                newEmployee()
-            }
-        })
-    }
-};
-
-// create employee function 
-const newEmployee = async () => {
-    await inquirer.prompt(questions).then((response) => {
-        let title = response.title;
-        let name = response.name;
-        let id = response.id;
-        let office = response.office;
-        let github = response.github;
-        let school = response.school;
-
-        if (title === 'Manager') {
-            inquirer.prompt(managerQuest).then((response) => {
-                office = response.office;
-                let employee = new Manager(name, id, email, office);
-                employeesArr.push(employee);
-                addEmployee(employeesArr);
-            });
-        } else if (title === 'Engineer') {
-            inquirer.prompt(engineerQuest).then((response) => {
-                github = response.github;
-                let employee = new Engineer(name, id, email, github);
-                employeesArr.push(employee);
-                addEmployee(employeesArr);
-            });
-        } else (title === 'Intern') {
-            inquirer.prompt(internQuest).then((response) => {
-                school = response.school;
-                let employee = new Intern(name, id, email, school);
-                employeesArr.push(employee);
-                addEmployee(employeesArr);
-            });
-        }
-    });
-};
-
-// create additional employees function 
-const addEmployee = async (array) => {
-    await inquirer.prompt({
-        type: 'confirm',
-        name: 'addEmployee',
-        message: 'add another employee? (Required)'
-    }).then(async (response) => {
-        let createEmployee = response.addEmployee;
-        if (await createEmployee === true) {
-            newEmployee();
-        } else if (await createEmployee === false) {
-            
-        }
-    })
-}
-
-
-
-init();

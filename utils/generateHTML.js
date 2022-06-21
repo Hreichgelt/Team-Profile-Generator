@@ -1,3 +1,5 @@
+const Manager = require("../lib/manager");
+
 // create a function that generates the html
 function generateHTML(data) {
   return `<!DOCTYPE html>
@@ -24,36 +26,77 @@ function generateHTML(data) {
         <div class="row">
         <div class="row col-12 d-flex justify-content-center">
       </div>
-      <div class="card" style="width: 18rem">
-        <div class="card-header name">Name</div>
-        <div class="card-header position">Manager</div>
-        <div class="card-header position">Office</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item id">ID</li>
-          <li class="list-group-item email">Email</li>
-        </ul>
-      </div>
-      <div class="card" style="width: 18rem">
-        <div class="card-header name">Name</div>
-        <div class="card-header position">Engineer</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item id">ID</li>
-          <li class="list-group-item email">Email</li>
-          <li class="list-group-item github">Github</li>
-        </ul>
-      </div>
-      <div class="card" style="width: 18rem">
-        <div class="card-header name">Name</div>
-        <div class="card-header position">Intern</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item id">ID</li>
-          <li class="list-group-item email">Email</li>
-          <li class="list-group-item github">School</li>
-        </ul>
-      </div>
+      ${generateEmployeeCards(data)}
     </body>
   </html>
   
+`;
+}
+
+function generateEmployeeCards(employeeArr) {
+  let cards = "";
+
+  for (let i = 0; i < employeeArr.length; i++) {
+    console.log(employeeArr[i].title);
+    if (employeeArr[i].title === "Manager") {
+      cards += generateManagerCard(employeeArr[i]);
+    }
+    if (employeeArr[i].title === "Engineer") {
+      cards += generateEngineerCard(employeeArr[i]);
+    }
+    if (employeeArr[i].title === "Intern") {
+      cards += generateInternCard(employeeArr[i]);
+    }
+  }
+
+  return cards;
+}
+
+function generateManagerCard(manager) {
+  return `
+      <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">${manager.name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">${manager.title}</h6>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item id">Employee ID: ${manager.id}</li>
+          <li class="list-group-item office">Office number: ${manager.office}</li>
+          <li class="list-group-item email">Employee Email: ${manager.email}</li>
+        </ul>
+      </div>
+      </div>
+`;
+}
+
+function generateEngineerCard(engineer) {
+  return `
+      <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">${engineer.name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">${engineer.title}</h6>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item id">Employee ID: ${engineer.id}</li>
+          <li class="list-group-item office">Github Username: ${engineer.github}</li>
+          <li class="list-group-item email">Employee Email: ${engineer.email}</li>
+        </ul>
+      </div>
+      </div>
+`;
+}
+
+function generateInternCard(intern) {
+  return `
+      <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-title">${intern.name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">${intern.title}</h6>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item id">Employee ID: ${intern.id}</li>
+          <li class="list-group-item office">School: ${intern.school}</li>
+          <li class="list-group-item email">Employee Email: ${intern.email}</li>
+        </ul>
+      </div>
+      </div>
 `;
 }
 

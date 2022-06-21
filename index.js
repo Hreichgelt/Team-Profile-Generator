@@ -10,140 +10,126 @@ const outputFile = path.join(output, "index.html");
 
 employeesArr = [];
 
-function init() {
-  function teamCreate () {
-    inquirer.prompt([{
-          type: "list",
-          name: "title",
-          message: "What is the employees title?",
-          choices: ["Engineer", "Intern", "Manager"],
-        }]).then(function (response) {
-        switch (response.title) {
-          case "manager":
-            addManager();
-            break;
-          case "engineer":
-            addEngineer();
-            break;
-          case "intern":
-            addIntern();
+async function employeeInputPrompt() {
+  while (true) {
+    const response = await inquirer.prompt([
+      {
+        type: "list",
+        name: "title",
+        message: "What role would you like to add?",
+        choices: ["Engineer", "Intern", "There are no other employees"],
+      },
+    ]);
+    switch (response.title) {
+      case "Engineer":
+        await addEngineer();
+        break;
+      case "Intern":
+        await addIntern();
+        break;
 
-          default:
-            builtHTML();
-        }
-      });
+      default:
+        builtHTML();
+        return;
+    }
   }
 }
 
-function addManager() {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is the employees name?",
-      },
-      {
-        type: "input",
-        name: "id",
-        message: "What is the employees ID Number?",
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "What is the employees email address?",
-      },
-      {
-        type: "input",
-        name: "office",
-        message: "What is your office number?",
-      },
-    ])
-    .then((response) => {
-      const manager = new Manager(
-        response.title,
-        response.name,
-        response.id,
-        response.email,
-        response.office
-      );
-      employeesArr.push(manager);
-      teamCreate();
-    });
+async function addManager() {
+  const response = await inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is the managers name?",
+    },
+    {
+      type: "input",
+      name: "id",
+      message: "What is the managers ID Number?",
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is the managers email address?",
+    },
+    {
+      type: "input",
+      name: "office",
+      message: "What is the managers office number?",
+    },
+  ]);
+  const manager = new Manager(
+    response.name,
+    response.id,
+    response.email,
+    response.office
+  );
+  employeesArr.push(manager);
 }
 
-function addEngineer() {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is the employees name?",
-      },
-      {
-        type: "input",
-        name: "id",
-        message: "What is the employees ID Number?",
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "What is the employees email address?",
-      },
-      {
-        type: "input",
-        name: "github",
-        message: "What is your Github username?",
-      },
-    ])
-    .then((response) => {
-      const engineer = new Engineer(
-        response.title,
-        response.name,
-        response.id,
-        response.email,
-        response.github
-      );
-      employeesArr.push(engineer);
-      teamCreate();
-    });
+async function addEngineer() {
+  const response = await inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is the employees name?",
+    },
+    {
+      type: "input",
+      name: "id",
+      message: "What is the employees ID Number?",
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is the employees email address?",
+    },
+    {
+      type: "input",
+      name: "github",
+      message: "What is your Github username?",
+    },
+  ]);
+  const engineer = new Engineer(
+    response.name,
+    response.id,
+    response.email,
+    response.github
+  );
+  employeesArr.push(engineer);
 }
 
-function addIntern() {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is the employees name?",
-      },
-      {
-        type: "input",
-        name: "id",
-        message: "What is the employees ID Number?",
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "What is the employees email address?",
-      },
-      {
-        type: "input",
-        name: "school",
-        message: "What school did/do you attend?",
-      },
-    ])
-    .then((response) => {
-      const intern = new Intern(
-        response.title,
-        response.name,
-        response.id,
-        response.email,
-        response.school
-      );
-      employeesArr.push(intern);
-      teamCreate();
-    });
+async function addIntern() {
+  const response = await inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is the employees name?",
+    },
+    {
+      type: "input",
+      name: "id",
+      message: "What is the employees ID Number?",
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What is the employees email address?",
+    },
+    {
+      type: "input",
+      name: "school",
+      message: "What school did/do you attend?",
+    },
+  ]);
+
+  const intern = new Intern(
+    response.name,
+    response.id,
+    response.email,
+    response.school
+  );
+  employeesArr.push(intern);
 }
 
 function builtHTML() {
@@ -152,6 +138,10 @@ function builtHTML() {
   fs.writeFileSync(outputFile, generateHTML(employeesArr));
 }
 
-teamCreate();
+// teamCreate(manager, engineer, intern);
+(async () => {
+  await addManager();
+  await employeeInputPrompt();
+})();
 
-init();
+// init();

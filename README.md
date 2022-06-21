@@ -1,26 +1,33 @@
 # Team-Profile-Generator
+
 A Node command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person.
 
+[LIVE SITE](https://hreichgelt.github.io/Team-Profile-Generator/)
 
+## TABLE OF CONTENTS
 
+1. [Description](#description)
+2. [Usage](#USAGE)
+3. [Visuals](#visuals)
+4. [Authors Acknowledgments](#authors-and-acknowledgments)
+5. [Resources](#resources)
 
-WHEN I click on an email address in the HTML
-THEN my default email program opens and populates the TO field of the email with the address
+## DESCRIPTION
 
-WHEN I click on the GitHub username
-THEN that GitHub profile opens in a new tab
+Easily enter your teams information and answer prompts to generate a nice team layout webpage.
 
-WHEN I start the application
-THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
+## USAGE
 
-WHEN I enter the team manager’s name, employee ID, email address, and office number
-THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
+Upon initializing the app, follow the prompts, add all members of your team and their information and the application will generate a nice looking html webpage for you.
 
-WHEN I decide to finish building my team
-THEN I exit the application, and the HTML is generated
+## VISUALS
 
-Your application should use Jest (Links to an external site.) for running the unit tests and Inquirer (Links to an external site.) for collecting input from the user. The application will be invoked by using the following command: node index.js   
+![Team Generator](./Demos/TeamGenerator.png)
 
+## AUTHORS AND ACKNOWLEDGMENTS
 
-Finally, although it’s not a requirement, you should consider adding validation to ensure that user input provided is in the proper expected format.
+## RESOURCES
 
+1. [LIVE SITE](https://hreichgelt.github.io/Team-Profile-Generator/)
+
+2. [REPOSITORY](https://github.com/Hreichgelt/Team-Profile-Generator)

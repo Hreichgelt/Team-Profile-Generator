@@ -2,7 +2,7 @@
 
 A Node command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person.
 
-[LIVE SITE](https://hreichgelt.github.io/Team-Profile-Generator/)
+[REPOSITORY](https://github.com/Hreichgelt/Team-Profile-Generator)
 
 ## TABLE OF CONTENTS
 
@@ -28,6 +28,4 @@ Upon initializing the app, follow the prompts, add all members of your team and 
 
 ## RESOURCES
 
-1. [LIVE SITE](https://hreichgelt.github.io/Team-Profile-Generator/)
-
-2. [REPOSITORY](https://github.com/Hreichgelt/Team-Profile-Generator)
+1. [REPOSITORY](https://github.com/Hreichgelt/Team-Profile-Generator)
